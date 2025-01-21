@@ -683,8 +683,6 @@ namespace eval kte {
 
                 for {set idx 0} {$idx < [$vNode getParamCount]} {incr idx} {
                     set name [$vNode getParamItem $idx]
-                    puts "Importing Library: $name"
-
                     $tagLib libImport $name
                     $tagLib libSetTags $name $engine
                 }
