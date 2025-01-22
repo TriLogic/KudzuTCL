@@ -79,7 +79,7 @@ Did you notice the 'SetValue' tag was slipped in when we were discussing the 'Ca
 {{ setvalue | caseValue=def /}}
 ```
 
-There are 14 standard tags recognized by the template engine:
+There are 14 standard tags recognized by the template engine including the {{= }} tag which has its own format:
 - Case
 - Cycle
 - Decr
@@ -91,7 +91,6 @@ There are 14 standard tags recognized by the template engine:
 - Ignore
 - Import
 - Incr
-- =
 - SetValue
 - UnsetValue
 
