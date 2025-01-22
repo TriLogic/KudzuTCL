@@ -1,5 +1,5 @@
 # KudzuTCL
-An easy to use, extendable, event driven template engine for Tcl/Tk.
+An easy to use, extensible, event driven, object-oriented template engine for Tcl/Tk.
 
 A template for KudzuTCL contains tags and content.  Tags are markup that direct the template engine to perform some special function like repitition or conditional inclusion of content.  Some tags contain inner content, some do not.  Some tags support inner content that allows the inclusion of other tags. Other tags like 'If' and 'Case' only support special tags within their immediate inner content.
 
