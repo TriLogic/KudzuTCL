@@ -57,10 +57,6 @@ Cycle value is: {{cycle|cycleValue|one|two|three/}}{{=cycleValue}}
 Cycle value is: {{cycle|cycleValue|one|two|three/}}{{=cycleValue}}
 Cycle value is: {{cycle|cycleValue|one|two|three/}}{{=cycleValue}}
 ```
-This produces the following output:
-The values of {incrVal, decrVal} are: {25, 25}
-The values of {incrVal, decrVal} are: {26, 24}
-The values of {incrVal, decrVal} are: {27, 23}
 
 The 'If' tag is a more complex tag for the conditional inclusion of content.  This tag expects one parameter that is the name of the value to evaluate for boolean true or false value.  If the corresponding value evaluates to true the inner 'Then' tag and it's inner content will be evaluated otherwise the inner 'Else' tag and it's inner content will be evaluated.  You can include other markup tags in the 'Then' and 'Else' tags.
 ```
