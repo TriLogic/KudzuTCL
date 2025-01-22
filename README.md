@@ -112,7 +112,7 @@ set engine [kte::CreateEngine [kte::OutputToPutsWriter new]]
 $tagLib libSetTags "string" $engine
 ```
 
-The previous code reference a tag libary named 'string'.  That tag libary is written as an example of how to write tag handles and libraries of tag handlers.  The 'string' libary includes custom tag handlers for tags named { 'ucase', 'lcase', 'ltrim', 'rtrim', 'trim'} which do pretty much what you'd expect them to.  You can find the code file for the 'string' libary in the lib folder.
+The previous code references a tag libary named 'string'.  That tag libary is written as an example of how to write tag handles and libraries of tag handlers.  The 'string' libary includes custom tag handlers for tags named { 'ucase', 'lcase', 'ltrim', 'rtrim', 'trim'} which do pretty much what you'd expect them to.  You can find the code file for the 'string' libary in the lib folder.
 
 Custom tag handlers don't have to be in libaries. They can be defined in your Tcl code and aded to a template engine when needed.  A good example of a customer tag handler would be a specialized tag to query a database, then repeat content over each record from the database while setting values from each record into the values collection of the engine.
 
