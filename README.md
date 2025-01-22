@@ -13,12 +13,12 @@ Tags are always  written in one the following forms:
 
 By default the names of tags are case insensitive as are parameter names passed to the tags.  It's possible to write your own tags that are not.  Also not that whitespace within the tags is ignored.
 
-With respect to parameter there are some tags expect parameters to be passed.  This is done by appending a pipe delimited list after the tag name.  The 'Cycle' tag is a good example of this. It expects the name of a value to use and then a list of values to cycle through.  Each execution of cycle retrieves the existing value from the template engine and replaces it with the next value on the list..
+With respect to parameters there are some tags that expect parameters to be passed.  This is done by appending a pipe delimited list after the tag name.  The 'Cycle' tag is a good example of this. It expects the name of a value to use and then a list of values to cycle through.  Each execution of cycle retrieves the existing value from the template engine and replaces it with the next value on the list.
 ```
 {{ cycle | cycleValue | one | two | three /}}
 ```
 
-Value substition tags:
+Value substition tags:  This tag replaces itself with whatever value is assigned to the engine's values collection for the name specified. It is case insensitive.
 ```
 trueBool            : {{= trueBool }},
 falseBool           : {{= falseBool }},
