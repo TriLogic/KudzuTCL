@@ -13,7 +13,7 @@ IfFalse on trueBool : {{iffalse | trueBool}}TRUE{{/iffalse}}
 -----------------------------------------------------------------------
 Testing IfFalse:
 
-IfFalse on falseBool: {{iftrue | falseBool }}FALSE{{/iftrue}}
+IfTrue  on falseBool: {{iftrue | falseBool }}FALSE{{/iftrue}}
 IfFalse on falseBool: {{iffalse | falseBool}}FALSE{{/iffalse}}
 -----------------------------------------------------------------------
 Testing If-Then-Else with trueBool
