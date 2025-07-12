@@ -70,7 +70,7 @@ The 'Case' tag is an even more complex tag for conditional content.  Like the 'I
 ```
 {{ setvalue | caseValue=def /}}
 {{ case | caseValue }}{{abc}}caseValue = abc{{/abc}}
-{{def}}caseValue = def{{/def}}{{else}}caseValue = '{{=caseValue}}{{/else}}'
+{{def}}caseValue = def{{/def}}{{else}}caseValue = '{{=caseValue}}'{{/else}}
 {{/ case }}
 ```
 
