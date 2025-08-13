@@ -6,14 +6,14 @@ A template for KudzuTCL contains tags and content.  Tags are markup that direct 
 Tags are always  written in one the following forms:
 ```
 {{ IfTrue | valName }} some inner content {{/ IfTrue }} - a begin tag, inner content and an end tag
-{{ decrVal | valName /}} - a self terminated tag that doesnt respec inner content
-{{ decrVal | valName }} inner content used a a comment that will be ignored {{/ decrVal }}
+{{ decrVal | valName /}} - a self terminated tag that doesnt have inner content
+{{ decrVal | valName }} inner content used as a comment that will be ignored {{/ decrVal }}
 {{= valName }} special tag to include values within content and inner content
 ```
 
-By default the names of tags are case insensitive as are parameter names passed to the tags.  It's possible to write your own tags that are not.  Also not that whitespace within the tags is ignored.
+By default the names of tags are case insensitive as are parameter names passed to the tags.  It's possible to write your own tags that are not.  Also note that whitespace within tags is ignored so that {{ decrVal | valName /}} is essentially the same as {{decrVal|valName/}}.
 
-With respect to parameters there are some tags that expect parameters to be passed.  This is done by appending a pipe delimited list after the tag name.  The 'Cycle' tag is a good example of this. It expects the name of a value to use and then a list of values to cycle through.  Each execution of cycle retrieves the existing value from the template engine and replaces it with the next value on the list.
+With respect to parameters there are some tags that expect parameters to be passed.  This is done by appending a pipe delimited list after the tag name.  The 'Cycle' tag is a good example of this. It expects the name of a value to use and then a list of static values to cycle through.  Each execution of cycle retrieves the existing value from the template engine and replaces it with the next value on the list.  More on this tag later.
 ```
 {{ cycle | cycleValue | one | two | three /}}
 ```
@@ -50,7 +50,7 @@ you can instead use an end tag and include inner content that will be ignored.
 ```
 
 The 'Cycle' tag is used to cycle a variables through a list of values. It is also an
-example of a tag that can self terminate. It ignores inner content.
+example of a tag that can self terminate. It ignores inner content. A future enhancement for this tag will be to allow it to lookup items from the engine's values collection by prepending static values with a '=' char.
 ```
 Cycle value is: {{cycle|cycleValue|one|two|three/}}{{=cycleValue}}
 Cycle value is: {{cycle|cycleValue|one|two|three/}}{{=cycleValue}}
@@ -94,7 +94,7 @@ There are 14 standard tags recognized by the template engine including the {{= }
 - SetValue
 - UnsetValue
 
-What's that 'Import' tag do? The template engine is very easy to extend and it supports a libary mechanism to allow extensions to be written in specially coded library files.  The 'Import' tag allows you to import these libaries on an 'as needed' basis.  If your Tcl code properly sets up a libary manager and assigns it to the template engine:
+What's that 'Import' tag do? The template engine is very easy to extend and it supports a libary mechanism to allow extensions to be written in specially coded library files.  The 'Import' tag allows you to import these libaries on an as needed basis.  Your Tcl code might set up a libary manager and assigns it to the template engine like this:
 ```
 set curPath [pwd]
 puts "current path is: $curPath"
@@ -109,6 +109,6 @@ $tagLib libSetTags "string" $engine
 
 The previous code references a tag libary named 'string'.  That tag libary is written as an example of how to write tag handlers and libraries of tag handlers.  The 'string' libary includes custom tag handlers for tags named { 'ucase', 'lcase', 'ltrim', 'rtrim', 'trim'} which do pretty much what you'd expect them to.  You can find the code file for the 'string' libary in the lib folder.
 
-Custom tag handlers don't have to be in libaries. They can be defined in your Tcl code and added to a template engine when needed.  A good example of a custom tag handler would be a specialized tag to query a database, then repeat content over each record from the database while setting values from each record into the values collection of the engine.
+Custom tag handlers don't have to be in libaries. They can be defined in your Tcl code and added to a template engine when needed.  A good example of a custom tag handler would be one that queries a database then repeats templated content for each record from the database by setting values from each record into the values collection of the engine then evaluating a 'row' tag.  If no rows are returned from your query evaluate an 'empty' tag instead.
 
-Template evaluation:  In KudzuTCL a template is evaluated as written.  Substitution and tag evaluation take place based on how the template is written.  So if you adhere to the engine's callback model it's possible to move large blocks of your template without ever needing to change the Tcl code that supports it.
+Template evaluation: In KudzuTCL a template is evaluated as written.  Once the template engine is invoked the engine does all the important work of tag evaluation and substitution making callbacks to stock tag hanglers and custom tags handlers when and where appropriate.  This means that if you adhere to the engine's callback model it's possible to move large blocks of your template without ever needing to change the code that supports it.
